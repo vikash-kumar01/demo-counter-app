@@ -1,0 +1,35 @@
+pipeline{
+    
+    agent any
+    
+    stages{
+        
+        stage('Git CheckOut'){
+            steps{
+                git branch: 'main', url: 'https://github.com/vikash-kumar01/SpringBoot_Counter_Application.git'
+            }
+        }
+        
+        stage('SonarQube analysis'){
+            steps{
+                script{
+                     withSonarQubeEnv('sonarserver') {
+                      sh 'mvn clean package sonar:sonar'
+                 }
+                }
+            }
+        }
+        stage("Quality Gate"){
+          steps{
+             script{
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+              }
+            }
+       }
+      }
+    }
+}
