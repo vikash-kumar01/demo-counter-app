@@ -22,8 +22,6 @@ pipeline{
                 script{
                      withSonarQubeEnv(credentialsId: 'sonar-api-key') {
                       sh 'mvn clean package sonar:sonar'
-                      cd 'target'
-                      sh 'ls -lart'
                  }
                 }
             }
