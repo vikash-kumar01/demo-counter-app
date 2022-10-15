@@ -95,7 +95,7 @@ pipeline {
 
                    withCredentials([string(credentialsId: 'dockerhub_creds', variable: 'dockerhub_creds')]) {
                         
-                        sh 'docker login -u vikashashoke -p ${dockerhub_pwd}'
+                        sh 'docker login -u vikashashoke -p ${dockerhub_creds}'
                         sh 'docker image push vikashashoke/$JOB_NAME:v1.$BUILD_ID'
                         sh 'docker image push vikashashoke/$JOB_NAME:latest'
                  }
