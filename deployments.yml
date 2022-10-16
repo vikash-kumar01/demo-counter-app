@@ -1,0 +1,20 @@
+kind: Deployment 
+apiVersion: apps/v1
+metadata:
+   name: mydeployment
+spec:
+   replicas: 2
+   selector:
+      mathLabels:
+         app: myspringbootapp
+   template:
+     metadata:
+       labels:
+         app: myspringbootapp
+     spec:
+       containers:
+         - name: myspringbootapp
+           image: vikashashoke/mydemoapplication:latest
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 9099
