@@ -37,28 +37,28 @@ pipeline {
                 
         }
            
-        // stage('eks deployments'){
-        //     when {  expression { params.action == 'create'}}
-        //     steps{
+        stage('eks deployments'){
+            when {  expression { params.action == 'create'}}
+            steps{
                 
-        //         scripts{
-        //            def apply = false
-        //            try{
-        //                input message: 'please confirm the apply to initite the deploymnts', ok: 'Ready to apply the config'
-        //                apply = true
-        //            }
-        //            catch(err){
-        //               apply = false
-        //               CurrentBuild.result= 'UNSTABLE'
-        //            }
-        //            if(apply){
+                scripts{
+                   def apply = false
+                   try{
+                       input message: 'please confirm the apply to initite the deploymnts', ok: 'Ready to apply the config'
+                       apply = true
+                   }
+                   catch(err){
+                      apply = false
+                      CurrentBuild.result= 'UNSTABLE'
+                   }
+                   if(apply){
 
-        //                     sh """
-        //                     kubectl apply -f .
-        //                     """;
-        //            }
-        //         }
-        //     }
-        // }
+                            sh """
+                            kubectl apply -f .
+                            """;
+                   }
+                }
+            }
+        }
     }
 }
