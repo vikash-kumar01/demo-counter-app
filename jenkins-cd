@@ -41,7 +41,7 @@ pipeline {
             when {  expression { params.action == 'create'}}
             steps{
                 
-                scripts{
+                script{
                    def apply = false
                    try{
                        input message: 'please confirm the apply to initite the deploymnts', ok: 'Ready to apply the config'
