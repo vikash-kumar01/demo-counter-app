@@ -12,8 +12,8 @@ pipeline{
             steps{
                 
                 script{
-                    
-                    sh 'mvn test'
+                    def mvnHome = tool name: 'maven-3.8.6', type: 'maven'
+                    sh "$(mvnHome)/bin/mvn package"
                 }
             }
         }
