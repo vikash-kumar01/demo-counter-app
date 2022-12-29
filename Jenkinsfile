@@ -7,9 +7,14 @@ pipeline{
             }
         }
 
-        stage('Unit Testing'){
+        stage('UNIT testing'){
+            
             steps{
-                    sh'mvn test'
+                
+                script{
+                    
+                    sh 'mvn test'
+                }
             }
         }
 
