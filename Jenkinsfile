@@ -53,7 +53,7 @@ pipeline{
         stage('nexus-auth'){
             steps{
                 script{
-                     def readPomVersion = readPomVersion file: 'pom.xml'
+                     def readPomVersion = readMavenPom file: 'pom.xml'
                     nexusArtifactUploader artifacts: 
                     [
                         [
