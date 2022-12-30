@@ -17,6 +17,11 @@ pipeline{
                 }
             }
         }
+        stage('Inegration Testing'){
+            steps{
+                sh 'mvn verify _DskipUnitTesting'
+            }
+        }
 
     }
 }
