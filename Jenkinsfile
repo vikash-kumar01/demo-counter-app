@@ -20,7 +20,7 @@ pipeline{
         stage('Inegration Testing'){
             steps{
                 def mvnHome = tool name: 'maven-3.8.6', type: 'maven'
-                sh"${mvnHome}/bin/mvn verify -DskipUnitTests'
+                sh"${mvnHome}/bin/mvn verify -DskipUnitTests"
             }
         }
 
