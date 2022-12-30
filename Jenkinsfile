@@ -19,9 +19,9 @@ pipeline{
         }
         stage('Integarion Testing'){
             steps{
-                sh'mvn verify -DskipUnitTests'
+                def mvnHome = tool name: 'maven-3.8.6', type: 'maven'
+                sh"${mvnHome}/bin/mvn verify -DskipUnitTests'
             }
-        }
         }
 
     }
