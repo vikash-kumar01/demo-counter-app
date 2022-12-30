@@ -17,12 +17,6 @@ pipeline{
                 }
             }
         }
-        stage('Integarion Testing'){
-            steps{
-                sh'mvn verify -DskipUnitTests'
-            }
-        }
-        }
 
     }
 }
