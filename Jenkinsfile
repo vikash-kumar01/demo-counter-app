@@ -53,6 +53,7 @@ pipeline{
         stage('nexus-auth'){
             steps{
                 script{
+                     def readPomVersion = readPomVersion file: 'pom.xml'
                     nexusArtifactUploader artifacts: 
                     [
                         [
@@ -69,7 +70,7 @@ pipeline{
                              nexusVersion: 'nexus3', 
                              protocol: 'http', 
                              repository: 'megaproject-release', 
-                             version: '1.0.0'
+                             version: "${readPomVersion.version}"
                 }
             }
         }
