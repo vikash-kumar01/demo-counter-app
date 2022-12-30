@@ -34,10 +34,12 @@ pipeline{
             }
         }
         stage('Static Code Analysis'){
-            steps{
-                def mvnHome = tool name: 'maven-3.8.6', type: 'maven'
-                withSonarQubeEnv(credentialsId: 'jenkins-sonar') {
-                  sh "${mvnHome}/bin/mvn clean package sonar:sonar"
+            steps{ 
+                script{
+                   def mvnHome = tool name: 'maven-3.8.6', type: 'maven'
+                   withSonarQubeEnv(credentialsId: 'jenkins-sonar') {
+                   sh "${mvnHome}/bin/mvn clean package sonar:sonar"
+                  }
                 } 
             }
         }
