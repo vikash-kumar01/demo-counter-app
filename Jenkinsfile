@@ -17,12 +17,11 @@ pipeline{
                 }
             }
         }
-        stage('Integration Testing'){
-
+        stage('Integarion Testing'){
             steps{
-                sh 'mvn verify -DskipUnitTests'
-                }
+                sh'mvn verify -DskipUnitTests'
             }
+        }
         }
 
     }
