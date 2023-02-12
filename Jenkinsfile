@@ -10,7 +10,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 's3nivelle', url: 'https://github.com/nivellef/demo-counter-app.git'
+                    git branch: 'main', url: 'https://github.com/vikash-kumar01/mrdevops_javaapplication.git'
                     
                 }
             }
