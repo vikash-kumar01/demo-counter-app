@@ -51,10 +51,10 @@ pipeline{
                 
                 script{
                     
-                  sh 'mvn sonar:sonar \
-  -Dsonar.projectKey=Demo-Counter \
-  -Dsonar.host.url=http://54.83.233.123:9000 \
-  -Dsonar.login=dbf1a2282c677f0a3908c4194708f4c0dc65d31b'
+                   withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                        
+                        sh 'mvn clean package sonar:sonar'
+                    }
                     }
                    }
                     
