@@ -51,7 +51,7 @@ pipeline{
                 
                 script{
                     
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api-key') {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api-key') 
                         
                         sh 'mvn clean package sonar:sonar'
                     }
