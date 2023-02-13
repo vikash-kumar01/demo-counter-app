@@ -15,6 +15,7 @@ pipeline{
                 }
             }
         }
+
         stage('UNIT testing'){
             
             steps{
@@ -25,6 +26,7 @@ pipeline{
                 }
             }
         }
+
         stage('Integration testing'){
             
             steps{
@@ -35,6 +37,7 @@ pipeline{
                 }
             }
         }
+
         stage('Maven build'){
             
             steps{
@@ -45,31 +48,43 @@ pipeline{
                 }
             }
         }
+
        stage('Static code analysis'){
             
-            steps{
+           steps{
                 
                 script{
                     
                    withSonarQubeEnv(credentialsId: 'sonar-api-key') {
                         
                         sh 'mvn clean package sonar:sonar'
+                            }
+                        }
                     }
-                    }
-                   }
                     
                 }
 
-            stage('Quality Gate Status'){
+        stage('Quality Gate Status'){
                 
-                steps{
+            steps{
                     
-                    script{
+                script{
                         
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api-key'
-                    }
+                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar-api-key'
                 }
             }
+   
         }
         
+        
+        
+        
+        
+
+            
+    }
+
+
+
 }
+
