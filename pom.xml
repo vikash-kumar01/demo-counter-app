@@ -41,7 +41,7 @@
                         <goal>repackage</goal>
                     </goals>
                     <configuration>
-                        <finalName>Uber</finalName>
+			    <finalName>Akhil<finalName>
                     </configuration>
                 </execution>
             </executions>
