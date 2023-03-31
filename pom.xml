@@ -41,7 +41,7 @@
                         <goal>repackage</goal>
                     </goals>
                     <configuration>
-			    <finalName>Akhil<finalName>
+			    <finalName>Akhil</finalName>
                     </configuration>
                 </execution>
             </executions>
