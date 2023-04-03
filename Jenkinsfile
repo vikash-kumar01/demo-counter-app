@@ -6,5 +6,10 @@ stages{
             git branch: 'main', url: 'https://github.com/VTS-New/demo-counter-app1.git'
         }
     }
-}
+    stage('UNIT Test'){
+        steps{
+            sh 'mvn test'
+        }
+    }
+  }
 }
