@@ -1,15 +1,29 @@
 pipeline{
+
     agent any
-stages{
-    stage('checkout from SCM'){
-        steps{
-            git branch: 'main', url: 'https://github.com/VTS-New/demo-counter-app1.git'
+
+    stages {
+
+        stage('Git Checkout'){
+
+            steps{
+
+                script{
+
+                    git branch: 'main', url: 'https://github.com/vikash-kumar01/mrdevops_javaapplication.git'
+                }
+            }
         }
-    }
-    stage('UNIT Test'){
-        steps{
-            sh 'mvn test'
+        stage('UNIT testing'){
+
+            steps{
+
+                script{
+
+                    sh 'mvn test'
+                }
+            }
         }
-    }
-  }
+
+   }
 }
