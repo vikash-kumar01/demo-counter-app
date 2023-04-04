@@ -28,10 +28,18 @@ pipeline{
                 sh 'mvn verify -DskipUnitTests'
             }
         }
-     stage(' Maven Build'){
+     stage('Maven Build'){
       steps{
         sh 'mvn clean install'
        }
      }
+   stage('Static code analysis'){
+    stage{
+         withSonarQubeEnv(credentialsId: 'sonar_api') {
+         sh 'mvn clean package sonar:sonar'
+      }
+     }
+    }  
+   }
   }
 }
