@@ -10,4 +10,9 @@ stages{
         }
     }
   }
-}
+ stage('Unit Test'){
+        steps{ 
+            sh 'mvn test'
+                }
+            }
+        }
