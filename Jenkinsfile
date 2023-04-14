@@ -9,10 +9,10 @@ stages{
             git branch: 'main', credentialsId: 'gitpasswd', url: 'https://github.com/VTS-New/demo-counter-app1.git'
         }
     }
-  }
     stage('Unit Test'){
         steps{ 
             sh 'mvn test'
                 }
             }
         }
+}    
