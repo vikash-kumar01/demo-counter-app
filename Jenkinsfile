@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    tools {
+        maven Maven
+    }
 stages{
     stage('checkout from SCM'){
         steps{
