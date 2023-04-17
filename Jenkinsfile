@@ -76,7 +76,7 @@ stages{
       stage('Push docker image to docer hub'){
         steps{
             script{
-                withCredentials([string(credentialsId: 'Sonar_Credential', variable: 'Docker_credentails')]) {
+                withCredentials([string(credentialsId: 'Docker_Credentials', variable: 'Docker_credentails')]) {
                     sh 'docker login -u ms21 -p ${Docker_credentails}'
                     sh 'docker image push ms21/$JOB_NAME:v1.$BUILD_NAME'
                     sh 'docker image push ms21/$JOB_NAME:v1.$latest'
