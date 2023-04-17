@@ -43,8 +43,8 @@ stages{
      stage('Upload WAR file to nexus'){
         steps{
             script{
-
-            
+                def readPomVersion  = readMavenPom file: 'pom.xml'
+                def nexusRepo  = readMavenPom.version.endsWith("SNAPSHOT") ? "demo-snapshot" : "demo-application"
                nexusArtifactUploader artifacts: 
                [
                   [
@@ -59,8 +59,8 @@ stages{
             nexusUrl: '18.61.34.157:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: 'demo-application', 
-            version: '2.0.0'
+            repository: nexusRepo, 
+            version: "${readPomVersion.version}"
             }
         }
       }     
