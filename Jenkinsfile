@@ -45,11 +45,11 @@ stages{
             script{
 
                def readPomVersion = readMavenPom file: 'pom.xml'
-               def nexusRepo = readPomVersion.version.endswith("SNAPSHOT") ? "demo-snapshot" : "demo-application"
+               def nexusRepo = readPomVersion.version.endsWith("SNAPSHOT") ? "demo-snapshot" : "demo-application"
 
                nexusArtifactUploader artifacts: 
                [
-                [
+                  [
                     artifactId: 'springboot',
                     classifier: '', file: 'target/Uber.jar',
                     type: 'jar'
