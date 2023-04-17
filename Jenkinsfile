@@ -59,7 +59,7 @@ stages{
             nexusUrl: '18.61.34.157:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: nexusRepo, 
+            repository: 'demo-application', 
             version: '2.0.0'
             }
         }
