@@ -50,16 +50,17 @@ stages{
                [
                 [
                     artifactId: 'springboot',
-                    classifier: '', file: 'target/Uber.jar', 
+                    classifier: '', file: 'target/Uber.jar',
                     type: 'jar'
+
                 ]
             ], 
-            credentialsId: 'nexu_auth', 
+            credentialsId: 'nexus_access',  
             groupId: 'com.example', 
             nexusUrl: '18.61.34.157:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: 'nexusRepo', 
+            repository: 'demo-application'', 
             version: "${readPomVersion.version}"
             }
         }
