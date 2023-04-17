@@ -6,7 +6,7 @@ pipeline{
 stages{
     stage('checkout from SCM'){
         steps{
-            git branch: 'main', credentialsId: 'git_user', url: 'https://github.com/VTS-New/demo-counter-app1.git'
+            git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/VTS-New/demo-counter-app1.git'
         }
     }
     stage('Unit Test'){
@@ -27,7 +27,7 @@ stages{
     stage('static code analysis'){
         steps {
             script{
-                 withSonarQubeEnv(credentialsId: 'sonar-api') {
+                 withSonarQubeEnv(credentialsId: 'Sonar_Credential') {
                     sh 'mvn clean package sonar:sonar'
                    }
                  }
@@ -36,7 +36,7 @@ stages{
      stage('Quality gate'){
         steps{
             script{
-                waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+                waitForQualityGate abortPipeline: false, credentialsId: 'Sonar_Credential'
             }
         }
      } 
@@ -56,7 +56,7 @@ stages{
             ], 
             credentialsId: 'nexu_auth', 
             groupId: 'com.example', 
-            nexusUrl: '18.60.81.128:8081', 
+            nexusUrl: '18.61.34.157:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
             repository: 'nexusRepo', 
