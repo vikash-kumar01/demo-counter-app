@@ -79,7 +79,7 @@ stages{
                 withCredentials([string(credentialsId: 'docker_pwd', variable: 'docker_credentials')]) {
                     sh 'docker login -u ms21 -p ${docker_credentials}'
                     sh 'docker image push ms21/$JOB_NAME:v1.$BUILD_NAME'
-                    sh 'docker image push ms21/$JOB_NAME:v1.$latest'
+                    sh 'docker image push ms21/$JOB_NAME:v1.latest'
  
                 }
             }
