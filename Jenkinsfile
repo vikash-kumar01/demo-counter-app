@@ -56,7 +56,7 @@ stages{
             ], 
             credentialsId: 'nexu_auth', 
             groupId: 'com.example', 
-            nexusUrl: '18.60.81.128:8081', 
+            nexusUrl: '18.60.56.112:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
             repository: 'nexusRepo', 
