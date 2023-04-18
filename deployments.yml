@@ -1,0 +1,20 @@
+apiVersion: app/v1
+kind: Deployment
+metadata:
+   name: mydeployment
+spec:
+   replicas: 2
+   selector:
+      matchLabels:
+         app: myspringboot
+   template:
+      metadata:
+        labels:
+         app: myspringboot
+      spec:
+        containers:
+          - name: myspringboot
+            image: ms21/demo-app
+            imagePullpolicy: Always
+            ports: 
+              - containersPort: 9099
