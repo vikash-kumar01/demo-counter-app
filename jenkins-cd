@@ -1,16 +1,20 @@
 pipeline{
     agent any
     parameters{
+
         choice(name: 'action', choices: 'create\ndestory\ndestoryekscluster', description: 'Create/Update or destory the cluster')
         string(name: 'cluster', defaultValue: 'demo-ekscluster', description: 'eks cluster name')
-        string(name: 'regions', defaultValue: 'ap-south-1', description: 'eks cluster region')
+        string(name: 'region', defaultValue: 'ap-south-1', description: 'eks cluster region')
     }
       environment{
+
             ACCESS_KEY = credentials('aws_access_key_id')
             SECRET_KEY = credentials('aws_secret_access_key')
       }
     stages{
+
         stage('git checkout'){
+
             steps{
                 git branch: 'main', url: 'https://github.com/VTS-New/demo-counter-app1.git'
             }
@@ -20,7 +24,7 @@ pipeline{
               sh """
                   aws configure set aws_access_key_id "$ACCESS_KEY"
                   aws configure set aws_secret_access_key "$SECRET_KEY"
-
+                  aws configure set region ""
                   aws eks --region ${params.region} update-kubeconfig --name ${params.demo-cluster}
                   """;
             }
