@@ -1,0 +1,55 @@
+pipeline{
+    agent any
+    parameters{
+
+        choice(name: 'action', choices: 'create\ndestory\ndestoryekscluster', description: 'Create/Update or destory the cluster')
+        string(name: 'cluster', defaultValue: 'demo-ekscluster', description: 'eks cluster name')
+        string(name: 'region', defaultValue: 'ap-south-1', description: 'eks cluster region')
+    }
+      environment{
+
+            ACCESS_KEY = credentials('aws_access_key_id')
+            SECRET_KEY = credentials('aws_secret_access_key')
+      }
+    stages{
+
+        stage('git checkout'){
+
+            steps{
+                git branch: 'main', url: 'https://github.com/VTS-New/demo-counter-app1.git'
+            }
+        }
+        stage('eks connect'){
+            steps{
+
+              sh """
+                  aws configure set aws_access_key_id "$ACCESS_KEY"
+                  aws configure set aws_secret_access_key "$SECRET_KEY"
+                  aws eks --region ${params.region} update-kubeconfig --name ${params.demo-cluster}
+                  """;
+            }
+        }    
+       // stage('eks deployment'){
+       //   when { expression { paramas.action == 'create'}}
+       //   steps {
+       //     scripts{
+       //           def apply =false
+       //             try{
+       //               input message: 'Please confirm the apply to deployments' , ok: 'Ready to apply the config'
+       //               apply = true
+       //           }
+       //           catch(err){
+       //                 apply = false
+       //                  CurrentBuild.results= 'UNSTABLE'
+       //             }
+       //             if(apply){
+       //                 sh """
+       //                      kubectl apply -f .
+       //                      """;
+       //             }
+       //         }
+       //     }
+        // }
+    }       
+}
+          
