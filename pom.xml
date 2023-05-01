@@ -28,7 +28,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -41,7 +40,7 @@
                         <goal>repackage</goal>
                     </goals>
                     <configuration>
-                        <finalName>Uber</finalName>
+			    <finalName>Akhil</finalName>
                     </configuration>
                 </execution>
             </executions>

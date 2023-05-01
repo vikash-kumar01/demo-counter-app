@@ -1,73 +1,41 @@
-pipeline{
-    
-    agent any 
-    
-    stages {
-        
-        stage('Git Checkout'){
-            
-            steps{
-                
-                script{
-                    
-                    git branch: 'main', url: 'https://github.com/vikash-kumar01/mrdevops_javaapplication.git'
-                }
-            }
-        }
-        stage('UNIT testing'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn test'
-                }
-            }
-        }
-        stage('Integration testing'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn verify -DskipUnitTests'
-                }
-            }
-        }
-        stage('Maven build'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn clean install'
-                }
-            }
-        }
-        stage('Static code analysis'){
-            
-            steps{
-                
-                script{
-                    
-                    withSonarQubeEnv(credentialsId: 'sonar-api') {
-                        
-                        sh 'mvn clean package sonar:sonar'
+pipeline {
+ agent any
+  stages {
+    stage('git checkout') {
+     steps {
+       git branch: 'main', url: 'https://github.com/akhilprabhu777/demo-counter-app.git'
+}
+}
+   stage('unit testing') {
+    steps {
+      sh 'mvn clean'
+}
+}
+   stage('Integration testing') {
+    steps {
+      sh 'mvn verify -DskipUnitTests'
+}
+}
+   stage('maven build') {
+    steps {
+      sh 'mvn clean install'
+}
+}
+   stage('Static code analysis'){
+      steps{   
+        script{
+            withSonarQubeEnv(credentialsId: 'sonar-apikey') {
+                 sh 'mvn clean package sonar:sonar'
                     }
                    }
-                    
                 }
             }
-            stage('Quality Gate Status'){
-                
-                steps{
-                    
-                    script{
-                        
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
-                    }
-                }
-            }
-        }
-        
+   stage('quality gate check') {
+    steps {
+     script {
+       waitForQualityGate abortPipeline: false, credentialsId: 'sonar-apikey'
+     } 
+    }
+   }
+}
 }
